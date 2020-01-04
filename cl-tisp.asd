@@ -2,7 +2,7 @@
   :version "0.1.0"
   :author "rig0rmortis"
   :license "MIT"
-  :depends-on ()  ;; <== list of Quicklisp dependencies
+  :depends-on ()
   :components ((:module "src"
                 :components
                 ((:file "cl-tisp"))))
