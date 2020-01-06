@@ -4,6 +4,6 @@ A small templating engine written in Common Lisp. The goal is to be a basic `jin
 
 # Syntax
 
-```
+```lisp
 
 ```

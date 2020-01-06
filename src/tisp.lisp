@@ -1,9 +1,11 @@
 (in-package :cl-user)
 (defpackage cl-tisp
-  (:use :cl)
-  (:export :generate-template))
+  (:use #:cl)
+  (:import-from #:cl-tisp.util
+                #:read-file-into-list)
+  (:export #:render-template))
 (in-package :cl-tisp)
 
-;; read template and populate it from variables
-(defun generate-template (template variables)
-  (nil))
+
+(defun render-template (template variables)
+  (let ((foo (concatenate 'string template variables))) (princ foo)))
