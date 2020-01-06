@@ -18,4 +18,4 @@
                         :direction :output
                         :if-exists :overwrite
                         :if-does-not-exist :create)
-    (format file file-contents)
+    (format file file-contents)))
