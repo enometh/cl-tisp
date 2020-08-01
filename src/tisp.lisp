@@ -8,4 +8,6 @@
 
 
 (defun render-template (template variables)
+  "given the template file and parsed toml as a lisp of variables, return the
+  rendered content with the variables substituted."
   (let ((foo (concatenate 'string template variables))) (princ foo)))
