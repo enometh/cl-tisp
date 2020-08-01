@@ -12,7 +12,7 @@ name = "Foo Bar"
 alive = true
 ```
 
-And some template file `person-condition` with the following contents:
+And some template file `template-file.tisp` with the following contents:
 
 ```
 {{ if person.alive }}
@@ -25,7 +25,7 @@ And some template file `person-condition` with the following contents:
 Running the `cl-tisp` executable should give you the rendered file:
 
 ```bash
-$ tisp render -t person.toml -f person-condition
-$ cat person-condition
+$ tisp render -t person.toml -f template-file.tisp -o rendered-file
+$ cat rendered-file
 Foo Bar is not dead!
 ```
