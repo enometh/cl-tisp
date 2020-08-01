@@ -1,6 +1,6 @@
 (defsystem "cl-tisp"
   :version "0.1.0"
-  :author "rig0rmortis"
+  :author "c0ns"
   :license "MIT"
   :source-control "https://github.com/c0ns/cl-tisp"
   :description "A tiny templating engine for Common Lisp."
