@@ -1,8 +1,8 @@
 (defsystem "cl-tisp"
   :version "0.1.0"
-  :author "c0ns"
+  :author "rig0rmortis"
   :license "MIT"
-  :source-control "https://github.com/c0ns/cl-tisp"
+  :source-control "https://github.com/rig0rmortis/cl-tisp"
   :description "A tiny templating engine for Common Lisp."
   :depends-on (:alexandria
                :cl-toml)
