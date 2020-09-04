@@ -18,8 +18,8 @@ And some template file `template-file.tisp` with the following contents:
 {{ if person.alive }}
 {{ person.alive }} is not dead!
 {{ else }}
-{{ person.alive }} is dead 💀!
-{{ end-if}}
+{{ person.name }} is dead 💀!
+{{ end }}
 ```
 
 Running the `cl-tisp` executable should give you the rendered file:
