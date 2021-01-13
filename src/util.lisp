@@ -20,6 +20,8 @@
                         :if-does-not-exist :create)
     (format file file-contents)))
 
+(defvar  *allowed-value-types* nil)
+
 ;; CL-TOML-TABLE is a hash-table returned by CL-TOML:PARSE
 (defun extract-key-val-pairs (cl-toml-table &optional parent-key (depth 0))
   (let (ret)
@@ -36,6 +38,8 @@
 		       ((and (consp val) (eq (car val) :string) (endp (cddr val)))
 			(assert (stringp (second val)))
 			(collect key (second val)))
+		       ((null *allowed-value-types*)
+			(collect key val))
 		       (t (warn "ignoring key=~S val=~S" key val))))
 	       cl-toml-table)
       ret)))
