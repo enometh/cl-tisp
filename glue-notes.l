@@ -42,3 +42,22 @@ alive = true
 
 #+nil
 (zenekindarl-render $ztemplate (cl-toml:parse $toml-string))
+
+
+;;; ----------------------------------------------------------------------
+;;;
+;;; https://github.com/cacharle/temper.git
+;;;
+(defvar $temper-template "
+<% (if person.alive (progn %>
+<%= person.name %> is not dead!
+<% ) (progn  %>
+<%= person.name %> is dead 💀!
+<% )) %>
+")
+
+#+nil
+(import 'CL-TISP::TEMPER-RENDER)
+
+#+nil
+(temper-render $temper-template (cl-toml:parse $toml-string))
