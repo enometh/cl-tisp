@@ -17,12 +17,16 @@
   :binary-pathname *cl-tisp-binary-dir*
   :source-extension "lisp"
   :depends-on (:alexandria
+	       :zenekindarl
+	       :eco
                :cl-toml)
   :components ((:module "src"
                 :components
                 ((:file "util")
                  (:file "tisp")
-                 (:file "macros")))))
+                 (:file "macros")
+		 (:file "zenekindarl-backend")
+		 (:file "eco-backend")))))
 
 #+nil
 (mk:oos :cl-tisp :load :compile-during-load t)
