@@ -3,6 +3,12 @@
   (:use "CL"))
 (in-package "CL-TISP-EXAMPLE")
 
+
+;;; ----------------------------------------------------------------------
+;;;
+;;; https://github.com/eudoxia0/eco.git
+;;;
+
 (defvar $toml-string "
 [person]
 name = \"Foo Bar\"
@@ -19,6 +25,12 @@ alive = true
 
 #+nil
 (eco-render $etemplate (cl-toml:parse $toml-string))
+
+
+;;; ----------------------------------------------------------------------
+;;;
+;;;  https://github.com/KeenS/zenekindarl.git
+;;;
 
 (defvar $ztemplate "
 {{ if person.alive }}
