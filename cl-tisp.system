@@ -12,21 +12,36 @@
   (merge-pathnames "cl-tisp/" (translate-logical-pathname "GITHUB:")))
 (defvar *cl-tisp-binary-dir* (binary-directory *cl-tisp-source-dir*))
 
+#||
+;; set features before loading cl-tisp.system, and recompile :force t
+
+(pushnew :cl-tisp-eco-backend *features*)
+(pushnew :cl-tisp-zenekindarl-backend *features*)
+(pushnew :cl-tisp-temper-backend *features*)
+
+(setq *features* (delete :cl-tisp-temper-backend *features*))
+(setq *features* (delete :cl-tisp-zenekindarl-backend *features*))
+(setq *features* (delete :cl-tisp-eco-backend *features*))
+||#
+
 (mk:defsystem :cl-tisp
   :source-pathname *cl-tisp-source-dir*
   :binary-pathname *cl-tisp-binary-dir*
   :source-extension "lisp"
   :depends-on (:alexandria
-	       :zenekindarl
-	       :eco
+	       #+cl-tisp-zenekindarl-backend :zenekindarl
+	       #+cl-tisp-eco-backend :eco
+	       #+cl-tisp-temper-backend :temper
                :cl-toml)
   :components ((:module "src"
                 :components
                 ((:file "util")
                  (:file "tisp")
                  (:file "macros")
-		 (:file "zenekindarl-backend")
-		 (:file "eco-backend")))))
+		 (:file "zenekindarl-backend" :if-feature :cl-tisp-eco-backend)
+		 (:file "eco-backend" :if-feature :cl-tisp-zenekindarl-backend)
+		 (:file "temper-backend" :if-feature :cl-tisp-temper-backend)
+		 ))))
 
 #+nil
 (mk:oos :cl-tisp :load :compile-during-load t)

@@ -1,5 +1,8 @@
 (defpackage "CL-TISP-EXAMPLE"
-  (:import-from "CL-TISP" "ECO-RENDER" "ZENEKINDARL-RENDER" "TEMPER-RENDER")
+  (:import-from "CL-TISP"
+   #+cl-tisp-eco-backend "ECO-RENDER"
+   #+cl-tisp-zenekindarl-backend "ZENEKINDARL-RENDER"
+   #+cl-tisp-temper-backend "TEMPER-RENDER")
   (:use "CL"))
 (in-package "CL-TISP-EXAMPLE")
 
@@ -23,7 +26,7 @@ alive = true
 <% end %>
 ")
 
-#+nil
+#+(and nil cl-tisp-eco-backend)
 (eco-render $etemplate (cl-toml:parse $toml-string))
 
 
@@ -40,7 +43,7 @@ alive = true
 {{ endif }}
 ")
 
-#+nil
+#+(and nil cl-tisp-zenekindarl-backend)
 (zenekindarl-render $ztemplate (cl-toml:parse $toml-string))
 
 
@@ -59,5 +62,5 @@ alive = true
 #+nil
 (import 'CL-TISP::TEMPER-RENDER)
 
-#+nil
+#+(and nil cl-tisp-temper-backend)
 (temper-render $temper-template (cl-toml:parse $toml-string))
