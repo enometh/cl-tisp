@@ -22,6 +22,9 @@
 (setq *features* (delete :cl-tisp-temper-backend *features*))
 (setq *features* (delete :cl-tisp-zenekindarl-backend *features*))
 (setq *features* (delete :cl-tisp-eco-backend *features*))
+
+(pushnew :cl-tisp-keyfile-support *features*)))
+(setq *features* (delete :cl-tisp-keyfile-support *features*))
 ||#
 
 (mk:defsystem :cl-tisp
@@ -32,10 +35,12 @@
 	       #+cl-tisp-zenekindarl-backend :zenekindarl
 	       #+cl-tisp-eco-backend :eco
 	       #+cl-tisp-temper-backend :temper
+	       #+cl-tisp-keyfile-support :girlib
                :cl-toml)
   :components ((:module "src"
                 :components
                 ((:file "util")
+		 (:file "girlib-util" :if-feature :cl-tisp-keyfile-support)
                  (:file "tisp")
                  (:file "macros")
 		 (:file "zenekindarl-backend" :if-feature :cl-tisp-eco-backend)

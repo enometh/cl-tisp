@@ -64,3 +64,32 @@ alive = true
 
 #+(and nil cl-tisp-temper-backend)
 (temper-render $temper-template (cl-toml:parse $toml-string))
+
+
+;;; ----------------------------------------------------------------------
+;;;
+;;;
+;;;
+(defvar $keyfile-data
+"
+[person]
+name = \"Foo Bar\"
+alive = false
+")
+
+(defmacro fixup-bool (place)
+  `(let* ((.old. ,place)
+	  (.rep. (cond ((string-equal "true" .old.) t)
+		       ((string-equal "false" .old.) nil)
+		       (t (error "place is not a bool")))))
+     (setf ,place .rep.)))
+
+#+nil
+(setq $t1 (cl-tisp.util::ini-file-to-toml-table
+	   (make-instance 'gir-lib:ini-file
+	     :data $keyfile-data)))
+#+nil
+(fixup-bool (gethash "alive" (gethash "person" $t1)))
+
+#+nil
+(temper-render $temper-template $t1)
