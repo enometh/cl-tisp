@@ -68,6 +68,23 @@ alive = true
 
 ;;; ----------------------------------------------------------------------
 ;;;
+;;; https://github.com/kanru/cl-mustache.git
+;;;
+(defvar $mustache-template "
+{{#person.alive}} {{person.name}} is not dead {{/person.alive}}
+{{^person.alive}} {{person.name}} is not dead 💀! {{/person.alive}}
+")
+
+#+nil
+(import 'CL-TISP::MUSTACHE-RENDER)
+
+#+(and nil cl-tisp-mustache-backend)
+(mustache-render $mustache-template (cl-toml:parse $toml-string))
+
+
+
+;;; ----------------------------------------------------------------------
+;;;
 ;;;
 ;;;
 (defvar $keyfile-data

@@ -18,10 +18,12 @@
 (pushnew :cl-tisp-eco-backend *features*)
 (pushnew :cl-tisp-zenekindarl-backend *features*)
 (pushnew :cl-tisp-temper-backend *features*)
+(pushnew :cl-tisp-mustache-backend *features*)
 
 (setq *features* (delete :cl-tisp-temper-backend *features*))
 (setq *features* (delete :cl-tisp-zenekindarl-backend *features*))
 (setq *features* (delete :cl-tisp-eco-backend *features*))
+(setq *features* (delete :cl-tisp-mustache-backend *features*))
 
 (pushnew :cl-tisp-keyfile-support *features*)))
 (setq *features* (delete :cl-tisp-keyfile-support *features*))
@@ -35,6 +37,7 @@
 	       #+cl-tisp-zenekindarl-backend :zenekindarl
 	       #+cl-tisp-eco-backend :eco
 	       #+cl-tisp-temper-backend :temper
+	       #+cl-tisp-mustache-backend :cl-mustache
 	       #+cl-tisp-keyfile-support :girlib
                :cl-toml)
   :components ((:module "src"
@@ -46,6 +49,7 @@
 		 (:file "zenekindarl-backend" :if-feature :cl-tisp-eco-backend)
 		 (:file "eco-backend" :if-feature :cl-tisp-zenekindarl-backend)
 		 (:file "temper-backend" :if-feature :cl-tisp-temper-backend)
+		 (:file "mustache-backend" :if-feature :cl-tisp-mustache-backend)
 		 ))))
 
 #+nil
